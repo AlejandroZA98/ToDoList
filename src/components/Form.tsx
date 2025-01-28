@@ -1,5 +1,25 @@
+import { useState } from "react"
 import { categories } from "../data/categories"
+import { Activity } from "../types"
+import { v4 as uuidv4 } from 'uuid';
+
 export default function Form() {
+    const inicialState:Activity={
+        id:uuidv4(),
+        category:1,
+        name:'',
+        hours:1
+
+    }
+    const [activity,setActivity]=useState(inicialState)
+
+    function handleChange(event: React.ChangeEvent<HTMLSelectElement>|React.ChangeEvent<HTMLInputElement>){
+        //console.log("Seleccionando Categoria", event.target.id, event.target.value)
+        const isNumber=['category','horas'].includes(event.target.id)// si se disparo category u horas
+        setActivity({...activity,[event.target.id]:isNumber? +event.target.value:event.target.value})
+    }
+
+
   return (
     <>
     <form 
@@ -7,7 +27,7 @@ export default function Form() {
         <div className=" grid grid-cols-1 gap-3">
             <label htmlFor="category" className="font-bold">Categoria:</label>
             <select className="border border-slate-300 p-2 rounded-lg w-full bg-white"
-             id="category" >{
+             id="category" onChange={handleChange} >{
                 categories.map((category) => (
                     <option key={category.id} value={category.id}>{category.name}</option>
                 ))
@@ -18,14 +38,14 @@ export default function Form() {
         <div className="grid grid-cols-1 gap-3">
             <label htmlFor="name" className="font-bold">Actividad:</label>
             <input id="name" type="text" className="border border-slate-300 p-2 rounded-lg"
-            placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas"
+            placeholder="Correr, Leer, Reunion" onChange={handleChange}
            />
 
         </div>
         <div className="grid grid-cols-1 gap-3">
-            <label htmlFor="calories" className="font-bold">Calorias:</label>
-            <input id="calories" type="number" className="border border-slate-300 p-2 rounded-lg"
-            placeholder="Calorias, ej.300 o 500"
+            <label htmlFor="calories" className="font-bold">Horas:</label>
+            <input id="horas" type="number" className="border border-slate-300 p-2 rounded-lg"
+            placeholder="Horas" onChange={handleChange}
        />
 
         </div>
