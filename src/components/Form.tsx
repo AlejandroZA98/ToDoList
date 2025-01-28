@@ -15,7 +15,7 @@ export default function Form() {
 
     function handleChange(event: React.ChangeEvent<HTMLSelectElement>|React.ChangeEvent<HTMLInputElement>){
         //console.log("Seleccionando Categoria", event.target.id, event.target.value)
-        const isNumber=['category','horas'].includes(event.target.id)// validacion de tipo de dato
+        const isNumber=['category','horas'].includes(event.target.id)// si se disparo category u horas
         setActivity({...activity,[event.target.id]:isNumber? +event.target.value:event.target.value})
     }
 
