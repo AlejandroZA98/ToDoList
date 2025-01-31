@@ -1,9 +1,9 @@
 import { Activity } from '../types'
-import { Dispatch } from "react"
+import { Dispatch, useEffect } from "react"
 import { ActivityActions } from "../reducers/activity-reducer"
 import  { useMemo } from 'react'
 import { categories } from '../data/categories'
-import { PencilSquareIcon, XCircleIcon,CheckCircleIcon } from '@heroicons/react/24/outline'
+import { PencilSquareIcon,CheckCircleIcon } from '@heroicons/react/24/outline'
 
 type TasksProps = {
     activities:Activity[],
@@ -12,6 +12,9 @@ type TasksProps = {
 export default function PendingTasks({activities,dispatch}:TasksProps) {
     const categoryName=useMemo(()=>
         (category:Activity['category'])=>categories.map(cat=> cat.id === category ? cat.name : ''),[activities])
+
+    
+
   return (
     <>
         {activities.length===0?
@@ -25,7 +28,7 @@ export default function PendingTasks({activities,dispatch}:TasksProps) {
                     </div>  
                     <div className='flex gap-1 items-center'>
                         <button>
-                       <PencilSquareIcon className='h-8 w-8 text-gray-800' />
+                       <PencilSquareIcon className='h-8 w-8 text-gray-800' onClick={()=>dispatch({type:'edit-activity',payload:{id:activity.id}})} />
                         </button>
                         <button>
                        <CheckCircleIcon className='h-8 w-8 text-blue-500' />

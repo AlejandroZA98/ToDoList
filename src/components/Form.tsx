@@ -1,4 +1,4 @@
-import { useState,Dispatch } from "react"
+import { useState,Dispatch,useEffect} from "react"
 import { categories } from "../data/categories"
 import {ActivityActions,ActivityState} from  "../reducers/activity-reducer" 
 import { Activity } from "../types"
@@ -34,6 +34,14 @@ export default function Form({dispatch,state}:FromProps) {
         const {name,hours}=activity
         return name.trim()!==''&& hours>0
     }
+    useEffect(()=>{
+        console.log("SE SELECCIONO UN ID",state.activeId)
+        if(state.activeId) {
+            const getActivitie=state.activities.filter(activitie=> activitie.id===state.activeId)
+            setActivity(getActivitie[0])
+        }
+       
+    },[state.activeId])
   return (
     <>
     <form onSubmit={handleSubmit} className=" space-y-5 bg-amber-50 shadow p-10 rounded-lg mt-10" >
