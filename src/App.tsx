@@ -5,6 +5,7 @@ import './index.css';
 import { useEffect, useMemo, useReducer } from "react"
 import { activityReducer,initialState } from "./reducers/activity-reducer"
 import PendingTasks from './components/PendingTasks';
+import FinishedTasks from './components/FinishedTasks';
 
 function App() {
 const [state,dispatch]=useReducer(activityReducer,initialState)
@@ -42,7 +43,9 @@ const [state,dispatch]=useReducer(activityReducer,initialState)
       <div className="">
           <h2 className="text-4xl font-black text-center ">Actividades terminadas</h2>
           <div className="space-y-3">
-           ee
+           <FinishedTasks
+           activitiesFinished={state.activitiesFinished}
+           dispatch={dispatch}></FinishedTasks>
           </div>
     
       </div>
