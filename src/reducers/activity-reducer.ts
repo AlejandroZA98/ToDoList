@@ -2,15 +2,19 @@ import { Activity } from "../types";
 
 export type ActivityActions=
 {type: 'save-activity',payload:{newActivity:Activity}}|
-{type: 'edit-activity',payload:{id:Activity['id']}}
+{type: 'edit-activity',payload:{id:Activity['id']}} |
+{type: 'check-activity',payload:{id:Activity['id']}} 
+
 
 export type ActivityState={
     activities: Activity[],
-    activeId:Activity['id']
+    activeId:Activity['id'],
+    activitiesFinished: Activity[]
 }
 export const initialState:ActivityState={
     activities:[],
-    activeId:''
+    activeId:'',
+    activitiesFinished:[]
 }
 
 export const activityReducer=(// estado de una lista de actividades
@@ -39,6 +43,26 @@ export const activityReducer=(// estado de una lista de actividades
             ...state,
             activeId:action.payload.id // cambia el activeId
         }
+    }
+    if(action.type==='check-activity'){
+        console.log("Editando..",action.payload.id)
+        if(action.payload.id){
+            console.log("EDITANDO...") 
+            const getActivitiesFinished=state.activities.filter(activitie=> activitie.id===action.payload.id)
+            const getActivities=state.activities.filter(activitie=> activitie.id!=action.payload.id)
+
+            //let finishedTasks:Activity[]
+
+            console.log(getActivitiesFinished)
+            return{
+                ...state,
+                activities:getActivities,
+                activeId:'',
+                activitiesFinished:[...state.activitiesFinished,getActivitiesFinished[0]]
+
+            }
+        }
+       
     }
     return state;
 }
