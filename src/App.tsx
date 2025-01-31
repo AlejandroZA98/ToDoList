@@ -2,9 +2,12 @@
 import './App.css'
 import Form from './components/Form';
 import './index.css';
+import { useEffect, useMemo, useReducer } from "react"
+import { activityReducer,initialState } from "./reducers/activity-reducer"
+import PendingTasks from './components/PendingTasks';
 
 function App() {
-
+const [state,dispatch]=useReducer(activityReducer,initialState)
   return (
     <>
      <header className="bg-red-600 py-3">
@@ -19,20 +22,19 @@ function App() {
       <div className="">
           <h2 className="text-4xl font-black text-center ">Añade Actividades</h2>
           <div className="space-y-3">
-          <Form></Form>
+          <Form
+          dispatch={dispatch}
+          state={state}></Form>
           </div>
     
       </div>
 
-
-
-
-
-
       <div className="">
           <h2 className="text-4xl font-black text-center ">Actividades pendientes</h2>
-          <div className="space-y-3">
-           ee
+          <div className="">
+           <PendingTasks
+           activities={state.activities}
+           dispatch={dispatch}></PendingTasks>
           </div>
     
       </div>
