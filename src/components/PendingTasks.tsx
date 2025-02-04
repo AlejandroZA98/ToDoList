@@ -1,5 +1,5 @@
 import { Activity } from '../types'
-import { Dispatch, useEffect } from "react"
+import { Dispatch } from "react"
 import { ActivityActions } from "../reducers/activity-reducer"
 import  { useMemo } from 'react'
 import { categories } from '../data/categories'

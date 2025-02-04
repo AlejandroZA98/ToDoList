@@ -1,5 +1,5 @@
 import { Activity } from '../types'
-import { Dispatch, useEffect,useMemo } from "react"
+import { Dispatch,useMemo } from "react"
 import { ActivityActions } from "../reducers/activity-reducer"
 import { categories } from '../data/categories'
 import { XCircleIcon } from '@heroicons/react/24/outline'
