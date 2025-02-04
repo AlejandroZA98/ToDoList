@@ -28,10 +28,10 @@ export default function PendingTasks({activities,dispatch}:TasksProps) {
                     </div>  
                     <div className='flex gap-1 items-center'>
                         <button>
-                       <PencilSquareIcon className='h-8 w-8 text-gray-800' onClick={()=>dispatch({type:'edit-activity',payload:{id:activity.id}})} />
+                       <PencilSquareIcon className='h-8 w-8 text-gray-800 cursor-pointer' onClick={()=>dispatch({type:'edit-activity',payload:{id:activity.id}})} />
                         </button>
                         <button>
-                       <CheckCircleIcon className='h-8 w-8 text-blue-500' onClick={()=>dispatch({type:'check-activity',payload:{id:activity.id}})}/>
+                       <CheckCircleIcon className='h-8 w-8 text-blue-500 cursor-pointer' onClick={()=>dispatch({type:'check-activity',payload:{id:activity.id}})}/>
                         </button> 
                    </div>
                 </div>

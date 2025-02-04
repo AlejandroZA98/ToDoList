@@ -20,13 +20,11 @@ export default function Form({dispatch,state}:FromProps) {
     const [activity,setActivity]=useState<Activity>(inicialState)// estado de una actividad
 
     function handleChange(event: React.ChangeEvent<HTMLSelectElement>|React.ChangeEvent<HTMLInputElement>){
-        //console.log("Seleccionando Categoria", event.target.id, event.target.value)
         const isNumber=['category','horas'].includes(event.target.id)// si se disparo category u horas
         setActivity({...activity,[event.target.id]:isNumber? +event.target.value:event.target.value})
     }
      function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log("Activity", activity)
         dispatch({type: 'save-activity',payload:{newActivity:activity}})
         setActivity({...inicialState,id:uuidv4()}) // resetear el estado de la actividad al inicial
     }
@@ -35,7 +33,6 @@ export default function Form({dispatch,state}:FromProps) {
         return name.trim()!==''&& hours>0
     }
     useEffect(()=>{
-        console.log("SE SELECCIONO UN ID",state.activeId)
         if(state.activeId) {
             const getActivitie=state.activities.filter(activitie=> activitie.id===state.activeId)
             setActivity(getActivitie[0])
@@ -72,7 +69,7 @@ export default function Form({dispatch,state}:FromProps) {
        />
 
         </div>
-        <input type="submit" className=" bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10"
+        <input value="Guardar" type="submit" className=" bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10 "
         disabled={!isActivity()}
         />
     </form>
