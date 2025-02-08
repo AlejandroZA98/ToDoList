@@ -1,5 +1,4 @@
 
-// EXAMPLE
 import { useState,Dispatch,useEffect} from "react"
 import { categories } from "../data/categories"
 import {ActivityActions,ActivityState} from  "../reducers/activity-reducer" 
