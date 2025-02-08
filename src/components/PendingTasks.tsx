@@ -1,5 +1,5 @@
 import { Activity } from '../types'
-import { Dispatch, useEffect } from "react"
+import { Dispatch } from "react"
 import { ActivityActions } from "../reducers/activity-reducer"
 import  { useMemo } from 'react'
 import { categories } from '../data/categories'
@@ -28,10 +28,10 @@ export default function PendingTasks({activities,dispatch}:TasksProps) {
                     </div>  
                     <div className='flex gap-1 items-center'>
                         <button>
-                       <PencilSquareIcon className='h-8 w-8 text-gray-800' onClick={()=>dispatch({type:'edit-activity',payload:{id:activity.id}})} />
+                       <PencilSquareIcon className='h-8 w-8 text-gray-800 cursor-pointer' onClick={()=>dispatch({type:'edit-activity',payload:{id:activity.id}})} />
                         </button>
                         <button>
-                       <CheckCircleIcon className='h-8 w-8 text-blue-500' />
+                       <CheckCircleIcon className='h-8 w-8 text-blue-500 cursor-pointer' onClick={()=>dispatch({type:'check-activity',payload:{id:activity.id}})}/>
                         </button> 
                    </div>
                 </div>
